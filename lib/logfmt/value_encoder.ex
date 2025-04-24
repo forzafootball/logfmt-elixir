@@ -1,4 +1,6 @@
 defprotocol Logfmt.ValueEncoder do
+  @fallback_to_any true
+
   @spec encode(value :: term) :: String.t()
   def encode(value)
 end
@@ -25,4 +27,8 @@ end
 
 defimpl Logfmt.ValueEncoder, for: Reference do
   def encode(ref), do: inspect(ref)
+end
+
+defimpl Logfmt.ValueEncoder, for: Any do
+  def encode(term), do: inspect(term)
 end
