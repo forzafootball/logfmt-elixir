@@ -19,6 +19,10 @@ defmodule LogfmtEncodeTest do
     assert encode(foo: "bar baz") == ~s(foo="bar baz")
   end
 
+  test "encodes an quoted and escaped value" do
+    assert encode(foo: "/\\\\\\\\\\\\/windows%2fwin.ini%23vt/test") == ~s(foo=/\\\\\\\\\\\\/windows%2fwin.ini%23vt/test)
+  end
+
   test "encode an empty string" do
     assert encode(empty: "") == ~s(empty="")
   end

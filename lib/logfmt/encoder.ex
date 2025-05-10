@@ -80,7 +80,7 @@ defmodule Logfmt.Encoder do
       :unquoted ->
         deduce_string_style(rest, :unquoted)
 
-      :quoted ->
+      acc when acc in [:quoted, :quoted_and_escaped] ->
         deduce_string_style(rest, :quoted_and_escaped)
     end
   end
